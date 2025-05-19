@@ -81,6 +81,17 @@ export default function FormatSelect() {
     window.open(url, '_blank');
   };
 
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('Copied to clipboard!');
+    } catch (err) {
+      alert('Failed to copy');
+      console.error(err);
+    }
+  };
+
+
   return (
     <main className="flex flex-col items-center justify-start min-h-screen bg-white px-6 py-12">
       <h1 className="text-3xl font-bold mb-4">Choose Output Format</h1>
@@ -178,6 +189,12 @@ export default function FormatSelect() {
                 >
                   Share
                 </button>
+                <button
+                  onClick={() => copyToClipboard(tweet)}
+                  className="text-sm px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                >
+                  Copy
+                </button>
               </div>
             </div>
           ))}
@@ -206,10 +223,10 @@ export default function FormatSelect() {
           )}
           {selectedFormat === 'LinkedIn Post' && (
             <button
-              onClick={shareToLinkedIn}
-              className="px-4 py-2 bg-[#0077B5] text-white rounded hover:bg-blue-800"
+              onClick={() => copyToClipboard(result)}
+              className="mt-4 px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
             >
-              Share on LinkedIn
+              Copy to Clipboard
             </button>
           )}
         </div>
