@@ -23,7 +23,7 @@ ReForm is an AI-powered platform that transforms raw content (documents, slides,
 ## 🧱 Project Structure
 
 ```
-/content-reform-frontend    # Next.js + Tailwind frontend
+/content-reform-ui    # Next.js + Tailwind frontend
 /content-reform-backend     # Express.js + OpenAI backend
 ```
 
@@ -40,10 +40,10 @@ cd reform
 
 ---
 
-### 2. Frontend Setup (`/content-reform-frontend`)
+### 2. Frontend Setup (`/content-reform-ui`)
 
 ```bash
-cd content-reform-frontend
+cd content-reform-ui
 npm install
 npm run dev
 ```
