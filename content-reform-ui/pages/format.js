@@ -27,10 +27,16 @@ export default function FormatSelect() {
     setTweetList([]);
   };
 
+  // Split a GPT generated X thread into individual tweets.
+  // Some models return lines prefixed with a number and optional
+  // whitespace, e.g. "1. ...", "2/ ...". The previous regex failed to
+  // match when leading spaces were present which caused the entire
+  // thread to be treated as a single tweet.
   const parseTweetThread = (text) => {
-    const matches = text.match(/(^\d+[/.][\s\S]*?)(?=\n\d+[/.]\s|$)/gm);
+    const regex = /(^\s*\d+[/.][\s\S]*?)(?=\n\s*\d+[/.]\s|$)/gm;
+    const matches = text.match(regex);
     if (!matches) return [text.trim()];
-    return matches.map(t => t.trim());
+    return matches.map((t) => t.trim());
   };
 
   const handleGenerate = async () => {
